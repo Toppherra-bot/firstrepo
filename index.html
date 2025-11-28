@@ -1,1 +1,584 @@
-<!DOCTYPE html> <html> <head> <title>First repository</title> </head> <body> <h1>Business Intelligence test</h1> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GiveAgain – Donate Unused Items</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --bg-light: #f3f4f6;
+      --text-dark: #111827;
+      --text-muted: #6b7280;
+      --accent: #10b981;
+      --border-radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #ffffff;
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    nav a {
+      color: #e5e7eb;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem 1rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2rem;
+      padding: 2rem 1.5rem;
+      background: var(--bg-light);
+      border-radius: 1.5rem;
+      margin-top: 1.5rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero-highlight {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.3rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--primary-dark);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #d1d5db;
+      color: white;
+    }
+
+    .hero-stat-box {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    .hero-stat-box h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-stat-box p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .stat {
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.9rem;
+      background: var(--bg-light);
+    }
+
+    .stat-number {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    section {
+      margin-top: 2.5rem;
+    }
+
+    section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    section p.section-intro {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      max-width: 650px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 1.2rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      background: var(--bg-light);
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .forms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    form {
+      background: white;
+      border-radius: var(--border-radius);
+      border: 1px solid #e5e7eb;
+      padding: 1.2rem 1.2rem 1.4rem 1.2rem;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+    }
+
+    form h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .form-group {
+      margin-bottom: 0.9rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.2rem;
+      font-weight: 500;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.55rem 0.6rem;
+      border-radius: 0.55rem;
+      border: 1px solid #d1d5db;
+      font-size: 0.9rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    .helper-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .btn-submit {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.4rem;
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-dark);
+    }
+
+    .note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+    }
+
+    .contact-box {
+      background: var(--bg-light);
+      border-radius: var(--border-radius);
+      padding: 1rem 1.2rem;
+    }
+
+    .contact-box p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-box strong {
+      color: var(--text-dark);
+    }
+
+    footer {
+      border-top: 1px solid #e5e7eb;
+      margin-top: 3rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 1.3rem 1.1rem;
+      }
+
+      .hero-title {
+        font-size: 1.6rem;
+      }
+
+      header {
+        position: static;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo">GiveAgain</div>
+      <nav>
+        <a href="#how-it-works">How it works</a>
+        <a href="#donate">Donate items</a>
+        <a href="#request-help">Request help</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <div class="hero-highlight">Charity service – 2025</div>
+        <h1 class="hero-title">Turn unused items into real help for people in need.</h1>
+        <p class="hero-subtitle">
+          GiveAgain connects people who have good-quality items they no longer use
+          with individuals and families who genuinely need them – clothes, furniture,
+          electronics, books and more.
+        </p>
+        <p class="hero-subtitle">
+          Instead of letting things gather dust or go to waste, you can give them
+          a second life and support your local community.
+        </p>
+        <div class="hero-actions">
+          <a href="#donate" class="btn btn-primary">I want to donate</a>
+          <a href="#request-help" class="btn btn-outline">I need support</a>
+        </div>
+      </div>
+
+      <div class="hero-stat-box">
+        <h2>Why this website?</h2>
+        <p>
+          Many people want to donate but don’t know where to start. This simple
+          website collects offers from donors and matches them with requests from
+          people in need.
+        </p>
+        <div class="hero-stat-grid">
+          <div class="stat">
+            <div class="stat-number">3 steps</div>
+            <div class="stat-label">List, match, arrange pickup</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">0 €</div>
+            <div class="stat-label">Fee to donate or request</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">Any</div>
+            <div class="stat-label">Type of usable item</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">Local</div>
+            <div class="stat-label">Community focused</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how-it-works">
+      <h2>How it works</h2>
+      <p class="section-intro">
+        The service is designed to be simple for both donors and recipients.
+        Once information is submitted through the forms below, the charity team
+        will manually review and match donations with requests.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <span class="tag">Step 1</span>
+          <h3>Donors list available items</h3>
+          <p>
+            People with unused but good-quality items fill in a short form with
+            item details, condition and location. This helps the team understand
+            what is available.
+          </p>
+        </div>
+        <div class="card">
+          <span class="tag">Step 2</span>
+          <h3>People in need submit requests</h3>
+          <p>
+            Individuals, families or organisations who need support describe the
+            type of items they are looking for and any specific requirements.
+          </p>
+        </div>
+        <div class="card">
+          <span class="tag">Step 3</span>
+          <h3>We match and coordinate</h3>
+          <p>
+            The charity reviews incoming offers and requests, then contacts both
+            sides to coordinate safe and convenient collection or delivery.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Forms -->
+    <section id="donate">
+      <h2>Donate unused items</h2>
+      <p class="section-intro">
+        If you have items you no longer use but are still in good condition,
+        please share a few details below. A coordinator will contact you to
+        confirm the match and arrange a suitable time and place.
+      </p>
+
+      <div class="forms-grid">
+        <form>
+          <h3>Donor form</h3>
+
+          <div class="form-group">
+            <label for="donor-name">Your name</label>
+            <input type="text" id="donor-name" name="donor-name" placeholder="Full name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="donor-email">Email address</label>
+            <input type="email" id="donor-email" name="donor-email" placeholder="you@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="donor-location">Town / Area</label>
+            <input type="text" id="donor-location" name="donor-location" placeholder="e.g. Dublin 1, Galway City" required />
+          </div>
+
+          <div class="form-group">
+            <label for="item-type">Type of item</label>
+            <select id="item-type" name="item-type" required>
+              <option value="">Select one</option>
+              <option>Clothes & shoes</option>
+              <option>Furniture</option>
+              <option>Electronics</option>
+              <option>Books & school supplies</option>
+              <option>Homeware & kitchen</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="item-description">Describe the item(s)</label>
+            <textarea id="item-description" name="item-description" placeholder="Include quantity, size, age and condition." required></textarea>
+            <p class="helper-text">Please only donate clean, safe and working items.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="donor-notes">Preferred days/times for collection (optional)</label>
+            <textarea id="donor-notes" name="donor-notes" placeholder="E.g. weekday evenings, Saturday mornings, etc."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Submit donation offer</button>
+          <p class="note">
+            This is a demo website: submitting the form will not send data to a server.
+          </p>
+        </form>
+
+        <!-- Request help -->
+        <div id="request-help">
+          <h2 style="margin-bottom: 0.7rem;">Request items for yourself or your organisation</h2>
+          <p class="section-intro" style="margin-top: 0;">
+            If you or your organisation needs support, please provide honest information.
+            The charity will try to match your request with available donations.
+          </p>
+
+          <form>
+            <h3>Request form</h3>
+
+            <div class="form-group">
+              <label for="recipient-name">Your name / organisation</label>
+              <input type="text" id="recipient-name" name="recipient-name" placeholder="Name or organisation" required />
+            </div>
+
+            <div class="form-group">
+              <label for="recipient-email">Email address</label>
+              <input type="email" id="recipient-email" name="recipient-email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="recipient-location">Town / Area</label>
+              <input type="text" id="recipient-location" name="recipient-location" placeholder="e.g. Dublin 8, Sligo Town" required />
+            </div>
+
+            <div class="form-group">
+              <label for="requested-items">What kind of items do you need?</label>
+              <textarea id="requested-items" name="requested-items" placeholder="E.g. winter coats for children, a small desk and chair, basic kitchen items." required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="urgency">How urgent is your request?</label>
+              <select id="urgency" name="urgency" required>
+                <option value="">Select one</option>
+                <option>Very urgent (within 1 week)</option>
+                <option>Moderately urgent (within 1 month)</option>
+                <option>Flexible (anytime)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="recipient-notes">Anything else we should know? (optional)</label>
+              <textarea id="recipient-notes" name="recipient-notes" placeholder="Share context, family size, or specific constraints (e.g. lift access, delivery times)."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit request</button>
+            <p class="note">
+              This is a demo website: form submissions are for illustration only.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact & next steps</h2>
+      <p class="section-intro">
+        In a real charity deployment, this section would include a phone number,
+        official email address and social media links. For this student project, it
+        simply explains how the service would normally operate.
+      </p>
+
+      <div class="contact-box">
+        <p><strong>How matching works:</strong> A volunteer team reviews all
+          donation offers and requests, then manually matches them based on item
+          type, condition and location.</p>
+        <p><strong>Data protection:</strong> Only essential contact information
+          is collected so that the charity can coordinate the handover. Personal
+          details are kept private and never shared publicly.</p>
+        <p><strong>Example contact details (demo):</strong><br />
+          Email: example@giveagain-charity.org<br />
+          Phone: +353 01 234 5678
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      GiveAgain – Charity item matching website (Student project, 2025)
+    </footer>
+  </main>
+</body>
+</html>
